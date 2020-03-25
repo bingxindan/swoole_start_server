@@ -6,7 +6,7 @@ swoolepid="swoole.pid"
 env=$(echo $3 | sed 's/[0-9]//g')
 flag=$(echo $3 | sed 's/[^0-9]//g')
 
-script="/home/service/swoole/lib/Server.php"
+script="/Users/lauren/work/phpweb/swoole_start_server/lib/Server.php"
 pidfile="/home/work${flag}/${root}/var/${swoolepid}"
 pid=""
 
@@ -22,7 +22,7 @@ start () {
 
     if [ -z "$pid" ]; then
     	echo "Starting : begin"
-        /home/service/php7/bin/php $script start $1 $2
+        /usr/local/php7/bin/php $script start $1 $2
         echo "Starting : finish"
     else
         echo "Starting : running"
@@ -36,7 +36,7 @@ stop () {
         echo "Stopping : no master"
     else
     	echo "Stopping : begin"
-        /home/service/php7/bin/php $script stop $1 $2
+        /usr/local/php7/bin/php $script stop $1 $2
         pids=$(ps aux | grep Swoole | grep $1$2 | awk '$0 = $2')
         for pid in $pids ; do
             kill -9 $pid
